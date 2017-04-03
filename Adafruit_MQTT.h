@@ -158,6 +158,7 @@ class Adafruit_MQTT {
   // error.
   int8_t connect();
   int8_t connect(const char *user, const char *pass);
+  void setClientid(const char *cid);
 
   // Return a printable string version of the error code returned by
   // connect(). This returns a __FlashStringHelper*, which points to a
@@ -215,7 +216,7 @@ class Adafruit_MQTT {
 
   // Read MQTT packet from the server.  Will read up to maxlen bytes and store
   // the data in the provided buffer.  Waits up to the specified timeout (in
-  // milliseconds) for data to be available. 
+  // milliseconds) for data to be available.
   virtual uint16_t readPacket(uint8_t *buffer, uint16_t maxlen, int16_t timeout) = 0;
 
   // Read a full packet, keeping note of the correct length
@@ -256,6 +257,7 @@ class Adafruit_MQTT_Publish {
  public:
   Adafruit_MQTT_Publish(Adafruit_MQTT *mqttserver, const char *feed, uint8_t qos = 0);
 
+  void setFeed(const char *feed);
   bool publish(const char *s);
   bool publish(double f, uint8_t precision=2);  // Precision controls the minimum number of digits after decimal.
                                                 // This might be ignored and a higher precision value sent.
@@ -274,6 +276,7 @@ class Adafruit_MQTT_Subscribe {
  public:
   Adafruit_MQTT_Subscribe(Adafruit_MQTT *mqttserver, const char *feedname, uint8_t q=0);
 
+  void setFeed(const char *feed);
   void setCallback(SubscribeCallbackUInt32Type callb);
   void setCallback(SubscribeCallbackDoubleType callb);
   void setCallback(SubscribeCallbackBufferType callb);
