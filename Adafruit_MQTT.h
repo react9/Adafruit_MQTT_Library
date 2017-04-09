@@ -265,6 +265,8 @@ class Adafruit_MQTT_Publish {
   bool publish(uint32_t i);
   bool publish(uint8_t *b, uint16_t bLen);
 
+  const char* getTopic();
+
 
 private:
   Adafruit_MQTT *mqtt;
@@ -276,6 +278,7 @@ class Adafruit_MQTT_Subscribe {
  public:
   Adafruit_MQTT_Subscribe(Adafruit_MQTT *mqttserver, const char *feedname, uint8_t q=0);
 
+  void setMqtt(Adafruit_MQTT *mqttserver);
   void setFeed(const char *feed);
   void setCallback(SubscribeCallbackUInt32Type callb);
   void setCallback(SubscribeCallbackDoubleType callb);

@@ -811,6 +811,10 @@ bool Adafruit_MQTT_Publish::publish(uint8_t *payload, uint16_t bLen) {
   return mqtt->publish(topic, payload, bLen, qos);
 }
 
+const char* Adafruit_MQTT_Publish::getTopic() {
+  return topic;
+}
+
 
 // Adafruit_MQTT_Subscribe Definition //////////////////////////////////////////
 
@@ -825,6 +829,10 @@ Adafruit_MQTT_Subscribe::Adafruit_MQTT_Subscribe(Adafruit_MQTT *mqttserver,
   callback_double = 0;
   callback_io = 0;
   io_mqtt = 0;
+}
+
+void Adafruit_MQTT_Subscribe::setMqtt(Adafruit_MQTT *mqttserver) {
+  mqtt = mqttserver;
 }
 
 void Adafruit_MQTT_Subscribe::setFeed(const char *feed) {
